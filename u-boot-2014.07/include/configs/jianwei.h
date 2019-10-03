@@ -13,7 +13,7 @@
 
 #define CONFIG_JIANWEI_S5P6818 /*'jianwei'*/
 
-#define CONFIG_SYS_PROMPT		"ORIGEN # "
+#define CONFIG_SYS_PROMPT		"JIANWEI # "
 
 #undef CONFIG_DEFAULT_DEVICE_TREE
 #define CONFIG_DEFAULT_DEVICE_TREE	exynos4210-origen
