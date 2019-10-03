@@ -28,6 +28,6 @@ obj-$(CONFIG_OMAP_COMMON) += omap-common/
 obj-$(CONFIG_SYS_ARCH_TIMER) += arch_timer.o
 obj-$(CONFIG_TEGRA) += tegra-common/
 
-ifneq (,$(filter s5pc1xx exynos,$(SOC)))
+ifneq (,$(filter s5pc1xx exynos s5p6818,$(SOC)))
 obj-y += s5p-common/
 endif
