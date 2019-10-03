@@ -1,0 +1,13 @@
+
+MK6818=/home/samba/u-boot-2014.07-jianwei-samsung-s5p6818/tool/s5p6818/mk6818
+NISH=/home/samba/u-boot-2014.07-jianwei-samsung-s5p6818/tool/s5p6818/nsih.txt
+SECONDBOOT=/home/samba/u-boot-2014.07-jianwei-samsung-s5p6818/tool/s5p6818/2ndboot
+S5P6818UBOOT=/home/samba/u-boot-2014.07-jianwei-samsung-s5p6818/u-boot-2014.07/s5p6818_boot.bin
+
+make origen_config
+
+make CROSS_COMPILE=/home/samba/u-boot-2014.07-jianwei-samsung-s5p6818/tool/gcc/arm-eabi-4.8/bin/arm-eabi- ARCH=arm
+
+
+
+$MK6818 $S5P6818UBOOT $NISH $SECONDBOOT u-boot.bin
