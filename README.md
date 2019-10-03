@@ -1,0 +1,1 @@
+# u-boot-2014.07-jianwei-samsung-s5p6818
