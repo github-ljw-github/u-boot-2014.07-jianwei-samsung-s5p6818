@@ -68,8 +68,13 @@ static const int udivslot[] = {
 static void serial_setbrg_dev(const int dev_index)
 {
 	struct s5p_uart *const uart = s5p_get_base_uart(dev_index);
+#ifdef CONFIG_JIANWEI_S5P6818
+	u32 uclk = CONFIG_SERIAL_CLK;/*get_uart_clk(dev_index);*/
+	u32 baudrate = CONFIG_BAUDRATE;/*gd->baudrate;*/
+#else
 	u32 uclk = get_uart_clk(dev_index);
 	u32 baudrate = gd->baudrate;
+#endif
 	u32 val;
 
 #if defined(CONFIG_SILENT_CONSOLE) && \
@@ -250,7 +255,15 @@ int fdtdec_decode_console(int *index, struct fdt_serial *uart)
 	return 0;
 }
 #endif
-
+#ifdef CONFIG_JIANWEI_S5P6818
+struct serial_device *default_serial_console(void)
+{
+	/*we do not config serial by fdt*/
+	config.enabled = 1;
+	config.base_addr = 0xC00A1000;
+	return &s5p_serial0_device;
+}
+#else
 __weak struct serial_device *default_serial_console(void)
 {
 #ifdef CONFIG_OF_CONTROL
@@ -291,7 +304,7 @@ __weak struct serial_device *default_serial_console(void)
 #endif
 #endif
 }
-
+#endif
 void s5p_serial_initialize(void)
 {
 	serial_register(&s5p_serial0_device);

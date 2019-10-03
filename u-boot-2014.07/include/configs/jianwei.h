@@ -11,6 +11,8 @@
 
 #include <configs/exynos4-dt.h>
 
+#define CONFIG_JIANWEI_S5P6818 /*'jianwei'*/
+
 #define CONFIG_SYS_PROMPT		"ORIGEN # "
 
 #undef CONFIG_DEFAULT_DEVICE_TREE
@@ -33,7 +35,7 @@
 #define CONFIG_SYS_MEMTEST_END		(CONFIG_SYS_SDRAM_BASE + 0x6000000)
 #define CONFIG_SYS_LOAD_ADDR		(CONFIG_SYS_SDRAM_BASE + 0x3E00000)
 
-#define CONFIG_SYS_TEXT_BASE		0x43E00000
+#define CONFIG_SYS_TEXT_BASE		0x43c00000/*0x43E00000*/
 
 #define CONFIG_MACH_TYPE		MACH_TYPE_ORIGEN
 
@@ -41,8 +43,9 @@
 #define CONFIG_SYS_MALLOC_LEN		(CONFIG_ENV_SIZE + (80 * SZ_1M))
 
 /* select serial console configuration */
-#define CONFIG_SERIAL2
+/*#define CONFIG_SERIAL2*/
 #define CONFIG_BAUDRATE			115200
+#define CONFIG_SERIAL_CLK			(50*100*10000)
 
 /* Console configuration */
 #define CONFIG_SYS_CONSOLE_INFO_QUIET
@@ -88,7 +91,7 @@
 #define CONFIG_SPL_LDSCRIPT	"board/samsung/common/exynos-uboot-spl.lds"
 #define CONFIG_SPL_MAX_FOOTPRINT	(14 * 1024)
 
-#define CONFIG_SYS_INIT_SP_ADDR		0x02040000
+#define CONFIG_SYS_INIT_SP_ADDR		0x43c00000/*(0x02040000*/
 
 /* U-boot copy size from boot Media to DRAM.*/
 #define COPY_BL2_SIZE		0x80000

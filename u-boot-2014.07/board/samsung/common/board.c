@@ -117,9 +117,42 @@ void dram_init_banksize(void)
 		gd->bd->bi_dram[i].size = size;
 	}
 }
-
+#ifdef CONFIG_JIANWEI_S5P6818
+#define S5P6818_GPIO_BASE 0xc0010000
+#define S5P6818_GPIOD 0xd000
+#define S5P6818_GPIOD_BASE ((S5P6818_GPIO_BASE) + (S5P6818_GPIOD))
+#define S5P6818_GPIOOUT 0x00
+#define S5P6818_GPIOOUTENB 0x04
+#define S5P6818_GPIOALTFN0 0x20
+#define S5P6818_GPIOALTFN1 0x24
+static unsigned in32(unsigned addr)
+{
+	return (*((volatile unsigned*)addr));
+}
+static void out32(unsigned addr, unsigned data)
+{
+	(*((volatile unsigned*)addr)) = data;
+}
+static void sr32(unsigned addr, unsigned start_bit, unsigned bit_num, unsigned data)
+{
+	unsigned mask = (~(((1<<bit_num) - 1)<<start_bit));
+	out32(addr, ((in32(addr))&mask) | (data<<start_bit));
+}
+static int s5p6818_uart_pinmux_config(int uart_id)
+{
+	/*init s5p6818 uart0 pinmux*/
+	sr32(S5P6818_GPIOD_BASE+S5P6818_GPIOOUTENB, 18, 1, 1);/*output mode*/
+	sr32(S5P6818_GPIOD_BASE+S5P6818_GPIOOUTENB, 14, 1, 0);/*input mode*/
+	sr32(S5P6818_GPIOD_BASE+S5P6818_GPIOALTFN1, 4, 2, 1);/*Select function 1(UART) of GPIOD 18 pin*/
+	sr32(S5P6818_GPIOD_BASE+S5P6818_GPIOALTFN0, 28, 2, 1);/*Select function 1(UART) of GPIOD 14 pin*/
+	return 0;/*success*/
+}
+#endif
 static int board_uart_init(void)
 {
+#ifdef CONFIG_JIANWEI_S5P6818
+	return s5p6818_uart_pinmux_config(0);
+#else
 	int err, uart_id, ret = 0;
 
 	for (uart_id = PERIPH_ID_UART0; uart_id <= PERIPH_ID_UART3; uart_id++) {
@@ -131,8 +164,8 @@ static int board_uart_init(void)
 		}
 	}
 	return ret;
+#endif
 }
-
 #ifdef CONFIG_BOARD_EARLY_INIT_F
 int board_early_init_f(void)
 {

@@ -36,7 +36,11 @@ struct s5p_uart {
 
 static inline int s5p_uart_divslot(void)
 {
+#ifdef CONFIG_JIANWEI_S5P6818
+	return 1;
+#else
 	return 0;
+#endif
 }
 
 #endif	/* __ASSEMBLY__ */
