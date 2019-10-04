@@ -12,7 +12,10 @@
 #include <asm/io.h>
 #include <asm/arch/pwm.h>
 #include <asm/arch/clk.h>
-
+#ifdef CONFIG_JIANWEI_S5P6818
+#define samsung_get_base_timer() CONFIG_S5P6818_TIMER_BASE
+#define  get_pwm_clk() CONFIG_S5P6818_PWM_CLK
+#endif
 int pwm_enable(int pwm_id)
 {
 	const struct s5p_timer *pwm =

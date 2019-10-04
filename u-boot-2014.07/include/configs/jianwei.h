@@ -12,6 +12,8 @@
 #include <configs/exynos4-dt.h>
 
 #define CONFIG_JIANWEI_S5P6818 /*'jianwei'*/
+#define CONFIG_S5P6818_TIMER_BASE 0X0C0017000
+#define CONFIG_S5P6818_PWM_CLK 200*10000
 
 #define CONFIG_SYS_PROMPT		"JIANWEI # "
 

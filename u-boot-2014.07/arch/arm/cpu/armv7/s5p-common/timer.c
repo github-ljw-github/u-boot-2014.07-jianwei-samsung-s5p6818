@@ -13,7 +13,10 @@
 #include <asm/arch/pwm.h>
 #include <asm/arch/clk.h>
 #include <pwm.h>
-
+#ifdef CONFIG_JIANWEI_S5P6818
+#define samsung_get_base_timer() CONFIG_S5P6818_TIMER_BASE
+#define  get_pwm_clk() CONFIG_S5P6818_PWM_CLK
+#endif
 DECLARE_GLOBAL_DATA_PTR;
 
 unsigned long get_current_tick(void);
@@ -41,6 +44,10 @@ static unsigned long timer_get_us_down(void)
 
 int timer_init(void)
 {
+#ifdef CONFIG_JIANWEI_S5P6818
+#define IP_RESET_REGISTER_1 0xc0012004
+	writel(1<<4, IP_RESET_REGISTER_1);
+#endif
 	/* PWM Timer 4 */
 	pwm_init(4, MUX_DIV_4, 0);
 	pwm_config(4, 100000, 100000);
