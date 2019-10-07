@@ -1,0 +1,3 @@
+[submodule "s5p6818_manual"]
+	path = s5p6818_manual
+	url = git@github.com:github-ljw-github/s5p6818_manual.git
