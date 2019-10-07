@@ -39,7 +39,7 @@
 
 #define CONFIG_SYS_TEXT_BASE		0x43c00000/*0x43E00000*/
 
-#define CONFIG_MACH_TYPE		MACH_TYPE_ORIGEN
+#define CONFIG_MACH_TYPE		MACH_TYPE_JIANWEI
 
 /* Size of malloc() pool */
 #define CONFIG_SYS_MALLOC_LEN		(CONFIG_ENV_SIZE + (80 * SZ_1M))
@@ -75,6 +75,7 @@
 #define CONFIG_SPL_TEXT_BASE	0x02021410
 
 #define CONFIG_BOOTCOMMAND	"ext4load mmc 2:1 0x48000000 uImage;bootm 0x48000000"
+#define CONFIG_BOOTARGS "lcd=at070tn92 tp=gslx680-linux root=/dev/mmcblk0p2 rw rootfstype=ext4"
 
 #define CONFIG_IDENT_STRING		" for JIANWEI"
 
