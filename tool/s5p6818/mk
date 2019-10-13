@@ -10,4 +10,4 @@ make CROSS_COMPILE=/home/samba/u-boot-2014.07-jianwei-samsung-s5p6818/tool/gcc/a
 
 
 
-$MK6818 $S5P6818UBOOT $NISH $SECONDBOOT u-boot.bin
+$MK6818 $S5P6818UBOOT $NISH $SECONDBOOT u-boot-dtb.bin
