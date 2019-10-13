@@ -1,3 +1,6 @@
 [submodule "s5p6818_manual"]
 	path = s5p6818_manual
 	url = git@github.com:github-ljw-github/s5p6818_manual.git
+[submodule "linux-3.4.39-jianwei-samsung-s5p6818"]
+	path = linux-3.4.39-jianwei-samsung-s5p6818
+	url = git@github.com:github-ljw-github/linux-3.4.39-jianwei-samsung-s5p6818.git
