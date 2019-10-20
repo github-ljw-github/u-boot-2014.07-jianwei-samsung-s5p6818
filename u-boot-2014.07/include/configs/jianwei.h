@@ -74,7 +74,7 @@
 #define COPY_BL2_FNPTR_ADDR	0x02020030
 #define CONFIG_SPL_TEXT_BASE	0x02021410
 
-#define CONFIG_BOOTCOMMAND	"ext4load mmc 2:1 0x48000000 uImage;bootm 0x48000000"
+#define CONFIG_BOOTCOMMAND	"fatload mmc 0:1 0x48000000 uImage;bootm 0x48000000"
 #define CONFIG_BOOTARGS "lcd=at070tn92 tp=gslx680-linux root=/dev/mmcblk0p2 rw rootfstype=ext4"
 
 #define CONFIG_IDENT_STRING		" for JIANWEI"

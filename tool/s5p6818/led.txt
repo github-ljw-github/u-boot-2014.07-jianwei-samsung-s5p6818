@@ -1,0 +1,19 @@
+/*led operation at assemble code, open c7*/
+
+/*1.select gpio funtion*/
+ldr r0, =(0xC001C000+0x20)
+ldr r1, [r0]
+and r1, r1, #0xFFFF3FFF 
+orr r1, r1, #(1<<14)
+str r1, [r0]
+/*2.output enable*/
+ldr r0, =(0xC001C000+0x04)
+ldr r1, [r0]
+orr r1, #(1<<7)
+str r1, [r0]
+/*3.gpio output 0*/
+ldr r0, =(0xC001C000+0x00)
+ldr r1, [r0]
+and r1, r1, #0xFFFFFF7F
+str r1, [r0]
+
